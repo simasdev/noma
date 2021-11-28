@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup />
+  <ItemGroup>
+    <Page Update="BaseControlStyles\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="BaseControlStyles\WindowStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Brushes\DefaultBrushes.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="CustomControlStyles\NoteControlStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NamedStyles\HeaderTextBlockStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NamedStyles\NavigationListBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NamedStyles\PrimaryButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NamedStyles\SearchTextBoxStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NamedStyles\SmallImageButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="NamedStyles\WindowChromeButtonStyle.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="ResourceLibrary.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+</Project>

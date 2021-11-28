@@ -1,0 +1,31 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"                   
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    >
+    
+    <ResourceDictionary.MergedDictionaries>
+        
+       <!---Brushes-->
+        <ResourceDictionary Source="Brushes/DefaultBrushes.xaml"/>
+        <!---/Brushes-->
+
+        <!---Base Control Styles-->
+        <ResourceDictionary Source="BaseControlStyles/WindowStyle.xaml"/>
+        <ResourceDictionary Source="BaseControlStyles/DataGridStyle.xaml"/>
+        <!---/Base Control Styles-->
+
+        <!---Custom Control Styles-->
+        <ResourceDictionary Source="CustomControlStyles/NoteControlStyle.xaml"/>
+        <!---/Custom Control Styles-->
+
+        <!---Named Styles-->
+        <ResourceDictionary Source="NamedStyles/HeaderTextBlockStyle.xaml"/>
+        <ResourceDictionary Source="NamedStyles/NavigationListBoxStyle.xaml"/>
+        <ResourceDictionary Source="NamedStyles/PrimaryButtonStyle.xaml"/>
+        <ResourceDictionary Source="NamedStyles/SmallImageButtonStyle.xaml"/>
+        <ResourceDictionary Source="NamedStyles/SearchTextBoxStyle.xaml"/>
+        <ResourceDictionary Source="NamedStyles/WindowChromeButtonStyle.xaml"/>
+        <!---/Named Styles-->
+
+    </ResourceDictionary.MergedDictionaries>
+    
+</ResourceDictionary>

@@ -1,0 +1,100 @@
+﻿<UserControl x:Class="Noma.WindowsUI.View.CategoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Noma.WindowsUI.View" 
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             Background="White"
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <i:Interaction.Triggers>
+        <i:EventTrigger EventName="Loaded">
+            <i:InvokeCommandAction Command="{Binding LoadedCommand}"/>
+        </i:EventTrigger>
+    </i:Interaction.Triggers>
+
+    <Grid Margin="0 0 10 0"
+         ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Style="{StaticResource HeaderTextBlockStyle}"
+                   Margin="10 0 0 0"
+                   VerticalAlignment="Center"
+                   Text="Categories"/>
+
+        <StackPanel Margin="0 0 10 0"
+                    Grid.Column="1"
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Button Style="{StaticResource PrimaryButtonStyle}"
+                    Grid.Column="1"
+                    Command="{Binding CreateCategoryCommand}"
+                    >
+                <Image Style="{StaticResource SmallImageButtonStyle}"
+                   Grid.Column="1"
+                   Source="/Images/add.png"/>
+            </Button>
+        </StackPanel>
+
+        <DataGrid 
+                  Grid.Row="1"
+                  Grid.ColumnSpan="2"
+                  ItemsSource="{Binding FilteredCategories}"
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Background="{StaticResource PrimaryBackgroundColor}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="*"
+                                    Header="Title"
+                                    Binding="{Binding Title}"/>
+
+                <DataGridTemplateColumn Width="80">
+
+                 
+                    
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <xctk:ColorPicker SelectedColor="{Binding ColorBind, UpdateSourceTrigger=PropertyChanged}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+                <DataGridCheckBoxColumn Header="Default" 
+                                        Binding="{Binding IsDefault}"                                         
+                                />
+
+                <DataGridTemplateColumn Width="80">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Style="{StaticResource PrimaryButtonStyle}"
+                                    Command="{Binding
+                                               Path= DataContext.DeleteCategoryCommand,
+                                               RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                    CommandParameter="{Binding}"
+                                    >
+                                <Image Style="{StaticResource SmallImageButtonStyle}"
+                                       Source="/Images/remove.png"/>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+
+            </DataGrid.Columns>
+          
+        </DataGrid>
+
+
+    </Grid>
+</UserControl>

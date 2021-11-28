@@ -1,0 +1,55 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\add.png" />
+    <None Remove="Images\app.ico" />
+    <None Remove="Images\category.png" />
+    <None Remove="Images\close_16.png" />
+    <None Remove="Images\close_24.png" />
+    <None Remove="Images\delete.png" />
+    <None Remove="Images\minimize_16.png" />
+    <None Remove="Images\more.png" />
+    <None Remove="Images\note.png" />
+    <None Remove="Images\remove.png" />
+    <None Remove="Images\settings.png" />
+    <None Remove="Images\trash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Extended.Wpf.Toolkit" Version="4.1.0" />
+    <PackageReference Include="MaterialDesignThemes" Version="4.2.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.37" />
+    <PackageReference Include="Prism.Core" Version="8.1.97" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\app.ico" />
+    <Resource Include="Images\category.png" />
+    <Resource Include="Images\close_16.png" />
+    <Resource Include="Images\delete.png" />
+    <Resource Include="Images\minimize_16.png" />
+    <Resource Include="Images\more.png" />
+    <Resource Include="Images\note.png" />
+    <Resource Include="Images\remove.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\trash.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Noma.ApplicationL\Noma.ApplicationL.csproj" />
+    <ProjectReference Include="..\Noma.Infrastructure\Noma.Infrastructure.csproj" />
+    <ProjectReference Include="..\Noma.Styling\Noma.Styling.csproj" />
+  </ItemGroup>
+
+</Project>

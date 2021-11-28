@@ -1,0 +1,146 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+                    >
+
+    <!--Default controls styles-->
+
+    <SolidColorBrush x:Key="PrimaryBackgroundColor" Color="#FFFFFF"/> <!--Perkelta-->
+    <SolidColorBrush x:Key="SecondaryBackgroundColor" Color="#4f5b66"/> <!--Perkelta-->
+    
+    <!--Perkelta-->
+    <Style x:Key="DefaultWindowStyle" TargetType="Window">
+        <Setter Property="FontFamily" Value="Verdana"/>
+    </Style>
+
+    <!--Perkelta PrimaryButtonStyle-->
+    <Style x:Key="btnLight" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <!--Perkelta Tikrai galime naudoti PrimaryButtoNStyle nes cia tas pats-->
+    <Style x:Key="btnIcon" TargetType="Button">
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </Style>
+    <!--Perkelta HeaderTextBlockStyle-->
+    <Style x:Key="Header" TargetType="TextBlock">
+        <Setter Property="FontSize" Value="26"/>
+        <Setter Property="FontWeight" Value="Bold"/>
+    </Style>
+
+    <!-- Hamburger menu style -->
+    <!--Perkelta-->
+    <Style x:Key="navListBox" TargetType="ListBox">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
+
+    </Style>
+    <!--Perkelta-->
+    <Style x:Key="navListBoxItem" TargetType="ListBoxItem">
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="40"/>
+        <Setter Property="Foreground" Value="#FFFFFF"/>
+        <Setter Property="Margin" Value="0 10 0 0"/>
+        <Setter Property="Background" Value="{StaticResource SecondaryBackgroundColor}"/>
+        <Setter Property="FontSize" Value="13"/>
+    </Style>
+    <!--Perkelta-->
+    <Style x:Key="navItemStackPanel" TargetType="StackPanel">
+        <Setter Property="Orientation" Value="Horizontal"/>
+    </Style>
+    <!--Perkelta-->
+    <SolidColorBrush x:Key="Item.MouseOver.Background" Color="#65737e"/>
+    <SolidColorBrush x:Key="Item.MouseOver.Border" Color="#65737e"/>
+    <SolidColorBrush x:Key="Item.SelectedActive.Background" Color="#6a7483"/>
+
+    <SolidColorBrush x:Key="Item.SelectedActive.Border" Color="#636E72"/>
+    <SolidColorBrush x:Key="Item.SelectedInactive.Background" Color="#B2BEC3"/>
+    <SolidColorBrush x:Key="Item.SelectedInactive.Border" Color="#636E72"/>
+    <ControlTemplate x:Key="navListBoxTemplate" TargetType="{x:Type ListBoxItem}">
+        <Border x:Name="Bd" Background="{TemplateBinding Background}" BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        </Border>
+        <ControlTemplate.Triggers>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="IsMouseOver" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.MouseOver.Background}"/>
+                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.MouseOver.Border}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Selector.IsSelectionActive" Value="False"/>
+                    <Condition Property="IsSelected" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Background}"/>
+                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedInactive.Border}"/>
+            </MultiTrigger>
+            <MultiTrigger>
+                <MultiTrigger.Conditions>
+                    <Condition Property="Selector.IsSelectionActive" Value="True"/>
+                    <Condition Property="IsSelected" Value="True"/>
+                </MultiTrigger.Conditions>
+                <Setter Property="Background" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Background}"/>
+                <Setter Property="BorderBrush" TargetName="Bd" Value="{StaticResource Item.SelectedActive.Border}"/>
+            </MultiTrigger>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="TextElement.Foreground" TargetName="Bd" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--Perkelta-->
+    <Style x:Key="navItemImage" TargetType="Image">
+        <Setter Property="Width" Value="24"/>
+        <Setter Property="Height" Value="24"/>
+    </Style>
+    <!--Perkelta-->
+    <Style x:Key="navItemTextBlock" TargetType="TextBlock">
+        <Setter Property="Margin" Value="10 5 5 5"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+    </Style>
+    
+    <!--Note style-->
+    
+   <!-- <SolidColorBrush x:Key="DefaultNoteColor" Color="#FEFF9C" /> -->
+    <SolidColorBrush x:Key="DefaultNoteBorderColor" Color="LightGray"/><!--Perkelta-->
+    
+    <!--Perkelta-->
+    <Style x:Key="noteControlStyle" TargetType="UserControl">
+        <Setter Property="BorderBrush" Value="{StaticResource DefaultNoteBorderColor}"/>
+        <Setter Property="BorderThickness" Value="1"/>
+    </Style>
+    
+    <!-- x:Key="txtNoteTitle" TargetType="TextBox">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Background" Value="{StaticResource DefaultNoteColor}"/>
+        <Setter Property="HorizontalScrollBarVisibility" Value="Hidden"/>
+        <Setter Property="BorderThickness" Value="0"/>
+    </>-->
+    <!--Perkelta-->
+    <Style x:Key="imgNoteButtonImg" TargetType="Image">
+        <Setter Property="Width" Value="16"/>
+        <Setter Property="Height" Value="16"/>
+        <Setter Property="Margin" Value="4"/>
+    </Style>
+
+    <!--Perkelta-->
+    <Style x:Key="richTxtNoteContent" TargetType="TextBox">
+        <Setter Property="BorderThickness" Value="0 1 0 0"/>
+    </Style>
+
+
+    <!--Perkelta-->
+    <Style x:Key="notePopupBox" TargetType="materialDesign:PopupBox">
+        <Setter Property="PlacementMode" Value="BottomAndAlignRightEdges"/>
+        <Setter Property="StaysOpen" Value="False"/>
+        <Setter Property="FontSize" Value="10"/>
+        <Setter Property="Opacity" Value="0.5"/>
+    </Style>
+
+</ResourceDictionary>
