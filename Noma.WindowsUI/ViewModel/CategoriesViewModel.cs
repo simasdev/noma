@@ -128,7 +128,10 @@ namespace Noma.WindowsUI.ViewModel
 
             if (messageBoxResult == MessageBoxResult.Yes)
             {
-                category.State = ModelState.Deleted;
+                if (category.State == ModelState.New)
+                    categories.Remove(category);
+                else
+                    category.State = ModelState.Deleted;
 
                 BindCategories();
             }
