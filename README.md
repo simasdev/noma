@@ -2,6 +2,8 @@
 
 A simple note manager desktop application that helps to manage and store your notes locally
 
+![image](https://user-images.githubusercontent.com/88032459/143777044-12216edb-1d69-4199-a4fe-e07b8d7c1cd6.png)
+
 
 ##  Getting Started
 ####  Prerequisites
