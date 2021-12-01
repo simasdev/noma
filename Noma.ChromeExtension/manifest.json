@@ -1,0 +1,12 @@
+{
+    "manifest_version":3,
+    "name": "Noma - Notes Manager",
+    "description": "Chrome extension, that allows you to take notes even quicker. Just select the text you want to add to the Noma app and click 'Add to Noma'",
+    "version": "1.0.0",
+    "background":{
+        "service_worker": "background.js"
+    },
+    "permissions": [
+        "contextMenus"
+    ]
+}
