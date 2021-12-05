@@ -31,6 +31,7 @@ namespace Noma.WindowsUI.ViewModel
         #region Commands
         public RelayCommand LoadedCommand { get; private set; }
         public RelayCommand CreateNoteCommand { get; private set; }
+        public RelayCommand<string> CreateNoteWithContentCommand { get;private set; }
         public RelayCommand<Note> DeleteNoteCommand { get; private set; }
         public RelayCommand<Note> MoveNoteToTrashCommand { get; private set; }
         public RelayCommand<Note> ExpandNoteCommand { get; private set; }
@@ -45,6 +46,7 @@ namespace Noma.WindowsUI.ViewModel
 
             LoadedCommand = new RelayCommand(OnLoaded);
             CreateNoteCommand = new RelayCommand(OnCreateNote);
+            CreateNoteWithContentCommand = new RelayCommand<string>(OnCreateNoteWithContent);
             DeleteNoteCommand = new RelayCommand<Note>(OnDeleteNote);
             MoveNoteToTrashCommand = new RelayCommand<Note>(OnMoveNoteToTrash);
             ExpandNoteCommand = new RelayCommand<Note>(OnExpandNote);
@@ -126,6 +128,24 @@ namespace Noma.WindowsUI.ViewModel
             Note note = new Note(categories)
             {
                 Content = string.Empty,
+                InTrash = false,
+                CategoryId = defaultCategory?.Id ?? null,
+                BackgroundColor = defaultCategory?.Color ?? userSettings.DefaultNoteColor32BitArgb,
+                State = ModelState.New
+            };
+
+            this.Notes.Add(note);
+
+            BindNotes();
+        }
+
+        private void OnCreateNoteWithContent(string content)
+        {
+            Category defaultCategory = Categories.FirstOrDefault(c => c.IsDefault);
+
+            Note note = new Note(categories)
+            {
+                Content = content,
                 InTrash = false,
                 CategoryId = defaultCategory?.Id ?? null,
                 BackgroundColor = defaultCategory?.Color ?? userSettings.DefaultNoteColor32BitArgb,

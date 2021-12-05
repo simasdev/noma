@@ -52,4 +52,8 @@
     <ProjectReference Include="..\Noma.Styling\Noma.Styling.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+
 </Project>

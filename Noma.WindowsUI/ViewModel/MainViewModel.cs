@@ -26,6 +26,10 @@ using Noma.ApplicationL.Categories.Commands.CreateCategory;
 using Noma.ApplicationL.Categories.Commands.UpdateCategory;
 using Noma.ApplicationL.Categories.Commands.DeleteCategory;
 using AutoMapper;
+using System.Net;
+using System.Threading;
+using System.IO;
+using Noma.ApplicationL.Common.Interfaces;
 
 namespace Noma.WindowsUI.ViewModel
 {
@@ -62,7 +66,13 @@ namespace Noma.WindowsUI.ViewModel
 
         #region Initialization
         private readonly IMapper mapper;
-        public MainViewModel(IMediator mediator, ISettings userSettings, IMapper mapper) : base(mediator, userSettings)
+        private readonly IRequestsReceiver requestsReceiver;
+
+        public MainViewModel(
+            IMediator mediator, 
+            ISettings userSettings, 
+            IMapper mapper,
+            IRequestsReceiver requestsReceiver) : base(mediator, userSettings)
         {
             notesViewModel = Services.GetRequiredService<NotesViewModel>();
             notesViewModel.ParentViewModel = this;
@@ -79,6 +89,7 @@ namespace Noma.WindowsUI.ViewModel
             WindowClosingCommand = new RelayCommand(OnWindowClosing);
 
             this.mapper = mapper;
+            this.requestsReceiver = requestsReceiver;
 
             CurrentViewModel = notesViewModel;
 
@@ -88,6 +99,8 @@ namespace Noma.WindowsUI.ViewModel
         {
             await LoadNotes();
             await LoadCategories();
+
+            StartRequestsHandling();
         }
 
         private async void OnWindowClosing()
@@ -95,6 +108,8 @@ namespace Noma.WindowsUI.ViewModel
             await currentViewModel.Save();
             await SaveNotes();
             await SaveCategories();
+
+            StopRequestsHandling();
         }
 
         #endregion
@@ -268,6 +283,37 @@ namespace Noma.WindowsUI.ViewModel
             }
 
             await CurrentViewModel?.Focused();
+        }
+
+        #endregion
+
+        #region Requests Handling
+
+        private void StartRequestsHandling()
+        {
+            requestsReceiver.NoteCreationRequested += RequestsReceiver_NoteCreationRequested;
+
+            requestsReceiver.StartReceiving();
+        }
+
+        private void StopRequestsHandling()
+        {
+            requestsReceiver.NoteCreationRequested -= RequestsReceiver_NoteCreationRequested;
+
+            requestsReceiver.StopReceiving();
+        }
+
+        private void RequestsReceiver_NoteCreationRequested(object sender, ApplicationL.Common.CustomEventArguments.NoteCreationEventArgs e)
+        {
+            lock(e)
+            {
+                var cmd = (notesViewModel.CreateNoteWithContentCommand as System.Windows.Input.ICommand);
+
+                if(cmd.CanExecute(e.Content))
+                {
+                    cmd.Execute(e.Content);
+                }
+            }
         }
 
         #endregion
